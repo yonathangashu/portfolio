@@ -1,0 +1,74 @@
+---
+const { company, role, date } = Astro.props;
+---
+
+<style>
+    @media (min-width: 48rem) {
+        .card {
+            padding: 0.55rem;
+        }
+        .company {
+            font-size: 1.15rem;
+        }
+        .card-role {
+            font-size: 0.75rem;
+            margin: 0.45rem;
+        }
+        .card-date {
+            font-size: 0.65rem;
+        }
+    }
+    @media (min-width: 72rem) {
+        .card {
+            padding: 0.8rem;
+        }
+        .company {
+            font-size: 1.3rem;
+        }
+        .card-role {
+            font-size: 0.9rem;
+            margin: 0.55rem;
+        }
+        .card-date {
+            font-size: 0.8rem;
+        }
+    }
+    .card {
+        background-color: #1b1226;
+        border: 1px solid rgba(79, 209, 255, 0.15);
+        border-radius: 2px;
+    }
+    .card-header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.55rem;
+    }
+    .company {
+        color: #ddd;
+        margin: 0;
+        font-weight: 1000;
+        text-decoration: underline #4fd1ff 0.15rem;
+        text-underline-offset: 0.25rem;
+    }
+    .card-role {
+        color: #ccc;
+        font-weight: 700;
+    }
+    .card-date {
+        color: #bbb;
+        margin: 0;
+        margin-left: 0.55rem;
+        font-weight: 400;
+    }
+</style>
+
+<div class="card">
+    <div class="card-header">
+        <slot name="logo" />
+        <h1 class="company">{company}</h1>
+    </div>
+    <p class="card-role">{role}</p>
+    <p class="card-date">{date}</p>
+</div>

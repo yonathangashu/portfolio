@@ -1,10 +1,16 @@
 ---
-import Sidebar from "@/components/Sidebar.astro";
+import "@/styles/global.css";
+import Sidebar from "@/components/sidebar/Sidebar.astro";
 ---
 
 <style>
 	html {
 		font-size: 20px;
+		background-color: #16071f;
+	}
+	main {
+		flex: 1;
+		overflow: auto;
 	}
 	.main-container {
 		margin: 0;

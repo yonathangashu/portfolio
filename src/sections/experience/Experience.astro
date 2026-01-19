@@ -1,0 +1,97 @@
+---
+import TimelineItem from "@/components/timeline/Timeline.astro";
+import ExperienceCard from "@/components/experiencecard/ExperienceCard.astro";
+import VerizonLogo from "@/assets/Verizon.svg";
+---
+
+<style>
+    @media (min-width: 48rem) {
+        .title {
+            font-size: 2.5rem;
+        }
+    }
+
+    @media (min-width: 72rem) {
+        .title {
+            font-size: 3rem;
+        }
+    }
+    .experience-container {
+        color: #9a9a9a;
+        display: flex;
+        flex-direction: column;
+        align-items: left;
+    }
+    .title {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: #ddd;
+        text-decoration: underline purple 0.3rem;
+        text-underline-offset: 0.4rem;
+        font-weight: 1000;
+        margin-bottom: 0.5rem;
+    }
+    .experience-timeline {
+        padding: 2rem;
+        margin-top: 0.5rem;
+    }
+</style>
+
+<h1 class="title">experience</h1>
+<div class="experience-container">
+    <div class="experience-timeline">
+        <TimelineItem>
+            <ExperienceCard
+                company="Department of Defense"
+                role="Capabilities Development Specialist"
+                date="May 2025 - August 2025"
+            >
+                <img
+                    slot="logo"
+                    src="https://www.defense.gov/Portals/1/Images/DOD-Icon-Header.png?ver=5sAfFl2--9znca0j3SrX_g%3d%3d"
+                    width={28}
+                    height={20}
+                />
+            </ExperienceCard>
+        </TimelineItem>
+        <TimelineItem>
+            <ExperienceCard
+                company="Department of Defense"
+                role="Artificial Intelligence Research Intern"
+                date="May 2024 - August 2024"
+            >
+                <img
+                    slot="logo"
+                    src="https://www.defense.gov/Portals/1/Images/DOD-Icon-Header.png?ver=5sAfFl2--9znca0j3SrX_g%3d%3d"
+                    width={28}
+                    height={20}
+                />
+            </ExperienceCard>
+        </TimelineItem>
+
+        <TimelineItem>
+            <ExperienceCard
+                company="Department of Defense"
+                role="Software Engineering Intern"
+                date="September 2022 - August 2023"
+            >
+                <img
+                    slot="logo"
+                    src="https://www.defense.gov/Portals/1/Images/DOD-Icon-Header.png?ver=5sAfFl2--9znca0j3SrX_g%3d%3d"
+                    width={28}
+                    height={20}
+                />
+            </ExperienceCard>
+        </TimelineItem>
+        <TimelineItem>
+            <ExperienceCard
+                company="Verizon"
+                role="System Developer Intern"
+                date="July 2022 - August 2022"
+            >
+                <VerizonLogo slot="logo" width={28} height="auto" />
+            </ExperienceCard>
+        </TimelineItem>
+    </div>
+</div>

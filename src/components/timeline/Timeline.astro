@@ -1,0 +1,56 @@
+---
+
+---
+
+<style>
+    :root {
+        --tl-line-width: 4px;
+    }
+
+    .tl-root {
+        position: relative;
+        padding-inline-start: 12px;
+    }
+    .tl-root:where(:not(:first-of-type)) {
+        margin-top: 16px;
+    }
+
+    .tl-root:where(:last-of-type)::before {
+        display: none;
+    }
+    .tl-root::before {
+        content: "";
+        position: absolute;
+        pointer-events: none;
+        border-inline-start: var(--tl-line-width) solid #4fd1ff;
+        top: 0;
+        left: calc(4px * -1);
+        right: auto;
+        bottom: -16px;
+    }
+
+    .tl-bullet {
+        --tl-bullet-size: 20px;
+        position: absolute;
+        left: calc((var(--tl-bullet-size) / 2 + var(--tl-line-width) / 2) * -1);
+        top: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: var(--tl-bullet-size);
+        height: var(--tl-bullet-size);
+        background-color: white;
+        border: calc(var(--tl-bullet-size) / 5) solid #4fd1ff;
+        border-radius: 100px;
+    }
+
+    .tl-content {
+        padding-inline-start: 12px;
+    }
+</style>
+<div class="tl-root">
+    <div class="tl-bullet"></div>
+    <div class="tl-content">
+        <slot />
+    </div>
+</div>
