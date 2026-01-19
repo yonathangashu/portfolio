@@ -12,15 +12,41 @@ const navItems = [
 <style>
     @media (min-width: 48rem) {
         .sidebar {
-            height: 100%;
-            width: 20rem;
-            padding: 2rem;
+            width: 14rem;
+            padding: 1.5rem;
             font-size: 0.7rem;
+        }
+        .title h1 {
+            font-size: 2.2rem;
+        }
+        .about {
+            font-size: 0.9rem;
+        }
+        .nav {
+            font-size: 0.55rem;
+            gap: 0.1rem;
+        }
+        .logo {
+            width: 12px;
         }
     }
     @media (min-width: 72rem) {
         .sidebar {
+            height: 100%;
+            width: 20rem;
+            padding: 2rem;
             font-size: 1rem;
+        }
+        .title h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+        .about {
+            font-size: 1.15rem;
+        }
+        .nav {
+            font-size: 0.75rem;
+            gap: 0.2rem;
         }
     }
     .sidebar {
@@ -46,13 +72,7 @@ const navItems = [
         text-underline-offset: 0.2rem;
     }
 
-    .title h1 {
-        font-size: 3rem;
-        margin-bottom: 0.5rem;
-    }
-
     .about {
-        font-size: 1.15rem;
         line-height: 1.8;
         font-weight: 300;
         color: #bbb;
@@ -69,8 +89,6 @@ const navItems = [
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 0.2rem;
-        font-size: 0.75rem;
     }
     .nav a {
         display: inline-flex;
