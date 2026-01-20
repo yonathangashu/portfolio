@@ -1,0 +1,87 @@
+---
+import SkillCard from "@/components/skillcard/SkillCard.astro";
+import RustLogo from "@/assets/rust.svg";
+import GhidraLogo from "@/assets/ghidra.svg";
+import CLogo from "@/assets/c.svg";
+import LinuxLogo from "@/assets/linux.svg";
+import JavaLogo from "@/assets/java.svg";
+---
+
+<style>
+    @media (min-width: 48rem) {
+        .title {
+            font-size: 2.5rem;
+        }
+    }
+
+    @media (min-width: 72rem) {
+        .title {
+            font-size: 3rem;
+        }
+    }
+    .skills-container {
+        color: #9a9a9a;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.8rem;
+        padding: 2rem;
+    }
+    .title {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: #ddd;
+        text-decoration: underline purple 0.3rem;
+        text-underline-offset: 0.4rem;
+        font-weight: 1000;
+        margin-top: 4rem;
+        margin-bottom: 0.5rem;
+    }
+    .logo {
+        padding: 0.15rem;
+
+        background-color: rgba(140, 82, 255, 0.12);
+        border-radius: 3px;
+    }
+</style>
+
+<h1 class="title">skills</h1>
+<div class="skills-container">
+    <SkillCard skill="Rust">
+        <RustLogo
+            class="logo"
+            slot="logo"
+            width={36}
+            height="auto"
+        /></SkillCard
+    >
+    <SkillCard skill="C">
+        <CLogo class="logo" slot="logo" width={36} height="auto" /></SkillCard
+    >
+    <SkillCard skill="Linux">
+        <LinuxLogo
+            class="logo"
+            slot="logo"
+            width={36}
+            height="auto"
+        /></SkillCard
+    >
+    <SkillCard skill="Ghidra">
+        <GhidraLogo
+            class="logo"
+            slot="logo"
+            width={36}
+            height="auto"
+        /></SkillCard
+    >
+    <SkillCard skill="Java">
+        <JavaLogo
+            class="logo"
+            slot="logo"
+            width={36}
+            height="auto"
+        /></SkillCard
+    >
+</div>

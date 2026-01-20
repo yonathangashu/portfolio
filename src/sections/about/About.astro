@@ -1,11 +1,12 @@
 ---
+import Skills from "@/sections/skills/Skills.astro";
 import Experience from "@/sections/experience/Experience.astro";
 ---
 
 <style>
     @media (min-width: 48rem) {
         .content-container {
-            padding-bottom: 4rem;
+            padding-bottom: 2rem;
             padding-top: 4rem;
         }
         .title {
@@ -26,7 +27,7 @@ import Experience from "@/sections/experience/Experience.astro";
     }
 
     .content-container {
-        color: #9a9a9a;
+        color: #aaaaaa;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -55,9 +56,9 @@ import Experience from "@/sections/experience/Experience.astro";
     <h1 class="title">about me</h1>
     <div class="body">
         <p>I'm Yonathan Gashu</p><p>
-            i like computers and cats and games and music and drawing and
-            snowboaridn gand skateboaridng and i like to play bass and guitar
-            too!
+            I focus on low-level systems, reverse engineering, and security
+            research, with experience in binary analysis and exploit
+            development.
         </p>
         <p>
             i like computers and cats and games and music and drawing and
@@ -68,4 +69,5 @@ import Experience from "@/sections/experience/Experience.astro";
         </p>
     </div>
     <Experience />
+    <Skills />
 </div>
