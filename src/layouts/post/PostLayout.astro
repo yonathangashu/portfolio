@@ -110,8 +110,12 @@ const { frontmatter } = Astro.props as Props;
 	<div class="content-container">
 		<div class="post-header">
 			<span class="post-meta"
-				>{frontmatter.date} ✦ #binaryanalysis ✦ #reverseengineering</span
-			>
+				>{frontmatter.date}
+				{
+					frontmatter.tags &&
+						frontmatter.tags.map((tag) => ` ✦ ${tag}`).join("")
+				}
+			</span>
 			<h1 class="post-title">{frontmatter.title}</h1>
 		</div>
 		<div class="post">

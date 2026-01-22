@@ -5,6 +5,7 @@ date: 01-22-2026
 author: Yonathan Gashu
 description: Find out what makes Astro awesome!
 published: false
+tags: ["#analysis"]
 ---
 
 Have you ever wondered to yourself _what_ would this look like with a longer title.

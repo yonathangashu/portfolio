@@ -4,6 +4,7 @@ title: Astro in Brief
 date: 01-21-2026
 author: Yonathan Gashu
 description: Find out what makes Astro awesome!
+tags: ["#binary"]
 published: false
 ---
 
