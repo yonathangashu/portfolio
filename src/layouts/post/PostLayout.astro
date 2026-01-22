@@ -1,0 +1,129 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<style>
+	@media (min-width: 48rem) {
+		.post {
+			max-width: 38rem;
+		}
+		.content-container {
+			padding-top: 4rem;
+			padding-bottom: 4rem;
+			padding-top: 4rem;
+			max-width: 44rem;
+			margin-left: 6rem;
+			margin-right: 2rem;
+		}
+	}
+	@media (min-width: 72rem) {
+		.post {
+			max-width: 48rem;
+		}
+		.content-container {
+			margin-left: 12rem;
+			margin-right: 4rem;
+		}
+	}
+
+	.content-container {
+		color: #bbb;
+	}
+	.post {
+		margin: auto;
+		line-height: 1.5rem;
+		padding: 1.8rem;
+		padding-top: 0;
+		margin-bottom: 0.7rem;
+	}
+	.post-header {
+		margin-bottom: 1.5rem;
+		transform-origin: top;
+		transform: skewY(-2deg) translate(-1rem, -0.4rem);
+		max-width: 100%;
+	}
+	.post-title {
+		color: #ddd;
+		text-decoration: underline purple 0.3rem;
+		text-underline-offset: 0.4rem;
+		font-weight: 1000;
+		margin-bottom: 0.5rem;
+		transform: skewY(0);
+		font-style: italic;
+	}
+	.post-meta {
+		font-size: 0.9rem;
+		font-style: italic;
+	}
+	a {
+		color: inherit;
+	}
+	p {
+		text-align: justify;
+		margin-top: 0;
+		margin-bottom: 1rem;
+	}
+	h1 > a,
+	h2 > a,
+	h3 > a,
+	h4 > a,
+	h5 > a,
+	h6 > a {
+		text-decoration: none;
+	}
+	h1 {
+		font-size: 2rem;
+		margin-top: 0;
+	}
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		color: #ddd;
+		font-family:
+			abril fatface,
+			serif;
+		font-weight: 700;
+		text-rendering: geometricPrecision;
+		font-style: italic;
+		text-decoration-line: underline;
+		text-decoration-color: purple;
+		text-underline-offset: 4%;
+		text-decoration-thickness: 0.25ex;
+	}
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		transform: skewY(-2deg) translate(-1rem, 0.25rem);
+		transform-origin: top;
+	}
+</style>
+<BaseLayout>
+	<div class="content-container">
+		<div class="post-header">
+			<span class="post-meta"
+				>2026-01-21 ✦ #binaryanalysis ✦ #reverseengineering</span
+			>
+			<h1 class="post-title">Why Ghidra?</h1>
+		</div>
+		<div class="post">
+			<p>
+				If you’ve read anything about compilers in the last two decades
+				or so, you have almost certainly heard of SSA compilers, a
+				popular architecture featured in many optimizing compilers,
+				including ahead-of-time compilers such as LLVM, GCC, Go, CUDA
+				(and various shader compilers), Swift1, and MSVC2, and
+				just-in-time compilers such as HotSpot C23, V84, SpiderMonkey5,
+				LuaJIT, and the Android Runtime6.Hello type shit!
+			</p>
+			<h1>Testing an in-post header!</h1>
+			<h2>Testing an in-post header!</h2>
+			<p>HEHRJBTKJHFKJBAHBFJ</p>
+		</div>
+	</div></BaseLayout
+>

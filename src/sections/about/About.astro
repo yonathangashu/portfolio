@@ -5,15 +5,17 @@ import Experience from "@/sections/experience/Experience.astro";
 
 <style>
     @media (min-width: 48rem) {
-        .content-container {
-            padding-bottom: 2rem;
-            padding-top: 4rem;
-        }
         .title {
             font-size: 2.5rem;
         }
         .body {
             font-size: 1rem;
+        }
+        @media (min-width: 48rem) {
+            .content-container {
+                padding-bottom: 2rem;
+                padding-top: 4rem;
+            }
         }
     }
 
@@ -26,12 +28,6 @@ import Experience from "@/sections/experience/Experience.astro";
         }
     }
 
-    .content-container {
-        color: #aaaaaa;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
     .title {
         color: #ddd;
         text-decoration: underline purple 0.3rem;
@@ -51,7 +47,14 @@ import Experience from "@/sections/experience/Experience.astro";
         font-size: 3rem;
         text-align: center;
     }
+    .content-container {
+        color: #bbb;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 </style>
+
 <div class="content-container">
     <h1 class="title">about me</h1>
     <div class="body">

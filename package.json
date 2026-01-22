@@ -8,13 +8,15 @@
 		"preview": "astro preview",
 		"format": "biome format --write",
 		"check": "biome check --fix",
-		"astro": "astro"
+		"astro": "astro",
+		"prepare": "husky"
 	},
 	"dependencies": {
 		"astro": "^5.16.11"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.3.11",
+		"husky": "^9.1.7",
 		"prettier-plugin-astro": "^0.14.1",
 		"typescript": "^5.9.3"
 	}
