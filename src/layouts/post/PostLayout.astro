@@ -9,19 +9,109 @@ const { frontmatter } = Astro.props as Props;
 ---
 
 <style is:global>
+	.content-container {
+		color: #bbb;
+		padding: 1rem;
+		padding-top: 2rem;
+		padding-bottom: 2rem;
+		margin-left: 1.5rem;
+		max-width: 100%;
+		font-size: 0.9rem;
+	}
+
+	.post {
+		margin: auto;
+		line-height: 1.4rem;
+		padding: 1rem;
+		padding-top: 0;
+		margin-bottom: 0.7rem;
+		max-width: 100%;
+	}
+
+	.post-header {
+		margin-bottom: 1.2rem;
+		transform-origin: top;
+		transform: skewY(-2deg) translate(-0.5rem, -0.4rem);
+		max-width: 100%;
+	}
+
+	.post-title {
+		color: #ddd;
+		text-decoration: underline purple 0.2rem;
+		text-underline-offset: 0.3rem;
+		font-weight: 1000;
+		margin-bottom: 0.5rem;
+		transform: skewY(0);
+		font-style: italic;
+		font-size: 1.5rem;
+	}
+
+	.post-meta {
+		font-size: 0.75rem;
+		font-style: italic;
+	}
+
+	.post h1 {
+		font-size: 1.5rem;
+		margin-top: 0;
+	}
+
+	.post h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		transform: skewY(-2deg) translate(-0.5rem, 0.25rem);
+		transform-origin: top;
+	}
+
 	@media (min-width: 48rem) {
-		.post {
-			max-width: 38rem;
-		}
 		.content-container {
 			padding-top: 4rem;
 			padding-bottom: 4rem;
-			padding-top: 4rem;
 			max-width: 44rem;
 			margin-left: 6rem;
 			margin-right: 2rem;
+			font-size: 1rem;
+		}
+
+		.post {
+			max-width: 38rem;
+			line-height: 1.5rem;
+			padding: 1.8rem;
+			padding-top: 0;
+		}
+
+		.post-header {
+			margin-bottom: 1.5rem;
+			transform: skewY(-2deg) translate(-1rem, -0.4rem);
+		}
+
+		.post-title {
+			text-decoration: underline purple 0.3rem;
+			text-underline-offset: 0.4rem;
+			font-size: 2rem;
+		}
+
+		.post-meta {
+			font-size: 0.9rem;
+		}
+
+		.post h1 {
+			font-size: 2rem;
+		}
+
+		.post h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			transform: skewY(-2deg) translate(-1rem, 0.25rem);
 		}
 	}
+
 	@media (min-width: 72rem) {
 		.post {
 			max-width: 48rem;
@@ -32,35 +122,6 @@ const { frontmatter } = Astro.props as Props;
 		}
 	}
 
-	.content-container {
-		color: #bbb;
-	}
-	.post {
-		margin: auto;
-		line-height: 1.5rem;
-		padding: 1.8rem;
-		padding-top: 0;
-		margin-bottom: 0.7rem;
-	}
-	.post-header {
-		margin-bottom: 1.5rem;
-		transform-origin: top;
-		transform: skewY(-2deg) translate(-1rem, -0.4rem);
-		max-width: 100%;
-	}
-	.post-title {
-		color: #ddd;
-		text-decoration: underline purple 0.3rem;
-		text-underline-offset: 0.4rem;
-		font-weight: 1000;
-		margin-bottom: 0.5rem;
-		transform: skewY(0);
-		font-style: italic;
-	}
-	.post-meta {
-		font-size: 0.9rem;
-		font-style: italic;
-	}
 	.post a {
 		color: inherit;
 	}
@@ -77,10 +138,6 @@ const { frontmatter } = Astro.props as Props;
 	h6 > a {
 		text-decoration: none;
 	}
-	.post h1 {
-		font-size: 2rem;
-		margin-top: 0;
-	}
 	.post h1,
 	h2,
 	h3,
@@ -96,17 +153,8 @@ const { frontmatter } = Astro.props as Props;
 		text-underline-offset: 4%;
 		text-decoration-thickness: 0.25ex;
 	}
-	.post h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6 {
-		transform: skewY(-2deg) translate(-1rem, 0.25rem);
-		transform-origin: top;
-	}
 </style>
-<BaseLayout>
+<BaseLayout title={frontmatter.title}>
 	<div class="content-container">
 		<div class="post-header">
 			<span class="post-meta"

@@ -15,78 +15,107 @@ posts.sort(
 ---
 
 <style>
-    @media (min-width: 48rem) {
-        .title {
-            font-size: 2.5rem;
-        }
-
-        @media (min-width: 48rem) {
-            .content-container {
-                padding-bottom: 2rem;
-                padding-top: 4rem;
-                margin-left: 2rem;
-            }
-        }
-    }
-
-    @media (min-width: 72rem) {
-        .title {
-            font-size: 3rem;
-        }
-        .content-container {
-            margin-left: 12rem;
-        }
+    .content-container {
+        color: #bbb;
+        padding: 1rem;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        max-width: 100%;
+        margin-left: 0;
     }
 
     .title {
         color: #ddd;
         text-align: center;
-        text-decoration: underline purple 0.3rem;
-        text-underline-offset: 0.4rem;
+        text-decoration: underline purple 0.2rem;
+        text-underline-offset: 0.3rem;
         font-weight: 1000;
         margin-bottom: 0.5rem;
+        font-size: 1.8rem;
     }
-    .content-container {
-        color: #bbb;
-    }
+
     .body {
         display: flex;
         flex-direction: column;
         align-items: left;
-        font-size: 0.9rem;
+        font-size: 0.8rem;
         font-weight: 450;
-        padding: 1.8rem;
+        padding: 1rem;
         margin-bottom: 0.7rem;
     }
+
     a {
         color: #ddd;
-        font-size: 0.7rem;
+        font-size: 0.65rem;
         text-decoration: none;
     }
-    a:hover {
-        color: #fff;
-    }
+
     .body h1 {
         margin: 0;
-        font-size: 1rem;
+        font-size: 0.9rem;
         font-style: italic;
         text-decoration: underline purple 0.1rem;
         text-underline-offset: 0.1rem;
     }
+    @media (min-width: 48rem) {
+        .content-container {
+            padding-bottom: 2rem;
+            padding-top: 4rem;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            text-decoration: underline purple 0.3rem;
+            text-underline-offset: 0.4rem;
+        }
+
+        .body {
+            font-size: 0.9rem;
+            padding: 1.8rem;
+        }
+
+        a {
+            font-size: 0.7rem;
+        }
+
+        .body h1 {
+            font-size: 1rem;
+        }
+    }
+
+    @media (min-width: 72rem) {
+        .content-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-left: 0;
+        }
+
+        .title {
+            font-size: 3rem;
+        }
+    }
+
+    a:hover {
+        color: #fff;
+    }
+
     .body p {
         margin: 0;
     }
+
     span {
         display: flex;
         gap: 0.35rem;
         align-items: center;
     }
+
     ul {
         margin: 0.15rem 0;
     }
 </style>
-<BaseLayout
-    ><div class="content-container">
+<BaseLayout title="posts">
+    <div class="content-container">
         <h1 class="title">posts</h1><div class="body">
             {
                 posts
@@ -100,9 +129,7 @@ posts.sort(
                                 <li>
                                     <span>
                                         <p>{post.frontmatter.date}</p> /
-                                        <h1 style="">
-                                            {post.frontmatter.title}
-                                        </h1>
+                                        <h1>{post.frontmatter.title}</h1>
                                     </span>
                                 </li>
                             </a>

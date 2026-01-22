@@ -3,12 +3,35 @@ const { skill } = Astro.props;
 ---
 
 <style>
+    .card {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.5rem;
+        width: 8rem;
+        margin-bottom: 0.55rem;
+        background-color: #1b1226;
+        border: 1px solid rgba(79, 209, 255, 0.15);
+        border-radius: 2px;
+    }
+    .skill {
+        color: #ddd;
+        margin: 0;
+        font-size: 0.8rem;
+        font-weight: 1000;
+        text-decoration: underline #4fd1ff 0.1rem;
+        text-underline-offset: 0.15rem;
+    }
+
     @media (min-width: 48rem) {
         .card {
             padding: 0.55rem;
         }
         .skill {
             font-size: 0.95rem;
+            width: 9rem;
+            text-decoration: underline #4fd1ff 0.2rem;
+            text-underline-offset: 0.25rem;
         }
     }
     @media (min-width: 72rem) {
@@ -18,24 +41,6 @@ const { skill } = Astro.props;
         .skill {
             font-size: 1.1rem;
         }
-    }
-    .card {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 0.5rem;
-        width: 9rem;
-        margin-bottom: 0.55rem;
-        background-color: #1b1226;
-        border: 1px solid rgba(79, 209, 255, 0.15);
-        border-radius: 2px;
-    }
-    .skill {
-        color: #ddd;
-        margin: 0;
-        font-weight: 1000;
-        text-decoration: underline #4fd1ff 0.15rem;
-        text-underline-offset: 0.25rem;
     }
 </style>
 

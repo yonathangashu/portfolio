@@ -3,6 +3,41 @@ const { company, role, date } = Astro.props;
 ---
 
 <style>
+    .card {
+        padding: 0.45rem;
+        background-color: #1b1226;
+        border: 1px solid rgba(79, 209, 255, 0.15);
+        border-radius: 2px;
+    }
+    .card-header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.55rem;
+    }
+    .company {
+        color: #ddd;
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 1000;
+        text-decoration: underline #4fd1ff 0.15rem;
+        text-underline-offset: 0.25rem;
+    }
+    .card-role {
+        color: #ccc;
+        font-size: 0.55rem;
+
+        font-weight: 700;
+    }
+    .card-date {
+        color: #bbb;
+        font-size: 0.55rem;
+        margin: 0;
+        margin-left: 0.55rem;
+        font-weight: 400;
+    }
+
     @media (min-width: 48rem) {
         .card {
             padding: 0.55rem;
@@ -32,35 +67,6 @@ const { company, role, date } = Astro.props;
         .card-date {
             font-size: 0.8rem;
         }
-    }
-    .card {
-        background-color: #1b1226;
-        border: 1px solid rgba(79, 209, 255, 0.15);
-        border-radius: 2px;
-    }
-    .card-header {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 0.5rem;
-        margin-bottom: 0.55rem;
-    }
-    .company {
-        color: #ddd;
-        margin: 0;
-        font-weight: 1000;
-        text-decoration: underline #4fd1ff 0.15rem;
-        text-underline-offset: 0.25rem;
-    }
-    .card-role {
-        color: #ccc;
-        font-weight: 700;
-    }
-    .card-date {
-        color: #bbb;
-        margin: 0;
-        margin-left: 0.55rem;
-        font-weight: 400;
     }
 </style>
 
