@@ -1,8 +1,10 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const { frontmatter } = Astro.props;
 ---
 
-<style>
+<style is:global>
 	@media (min-width: 48rem) {
 		.post {
 			max-width: 38rem;
@@ -71,20 +73,17 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 	h6 > a {
 		text-decoration: none;
 	}
-	h1 {
+	.post h1 {
 		font-size: 2rem;
 		margin-top: 0;
 	}
-	h1,
+	.post h1,
 	h2,
 	h3,
 	h4,
 	h5,
 	h6 {
 		color: #ddd;
-		font-family:
-			abril fatface,
-			serif;
 		font-weight: 700;
 		text-rendering: geometricPrecision;
 		font-style: italic;
@@ -93,7 +92,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 		text-underline-offset: 4%;
 		text-decoration-thickness: 0.25ex;
 	}
-	h1,
+	.post h1,
 	h2,
 	h3,
 	h4,
@@ -107,23 +106,12 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 	<div class="content-container">
 		<div class="post-header">
 			<span class="post-meta"
-				>2026-01-21 ✦ #binaryanalysis ✦ #reverseengineering</span
+				>{frontmatter.date} ✦ #binaryanalysis ✦ #reverseengineering</span
 			>
-			<h1 class="post-title">Why Ghidra?</h1>
+			<h1 class="post-title">{frontmatter.title}</h1>
 		</div>
 		<div class="post">
-			<p>
-				If you’ve read anything about compilers in the last two decades
-				or so, you have almost certainly heard of SSA compilers, a
-				popular architecture featured in many optimizing compilers,
-				including ahead-of-time compilers such as LLVM, GCC, Go, CUDA
-				(and various shader compilers), Swift1, and MSVC2, and
-				just-in-time compilers such as HotSpot C23, V84, SpiderMonkey5,
-				LuaJIT, and the Android Runtime6.Hello type shit!
-			</p>
-			<h1>Testing an in-post header!</h1>
-			<h2>Testing an in-post header!</h2>
-			<p>HEHRJBTKJHFKJBAHBFJ</p>
+			<slot />
 		</div>
 	</div></BaseLayout
 >
