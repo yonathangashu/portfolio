@@ -4,10 +4,11 @@ const { company, role, date } = Astro.props;
 
 <style>
     .card {
-        padding: 0.45rem;
+        padding: 0.55rem;
         background-color: #1b1226;
         border: 1px solid rgba(79, 209, 255, 0.15);
         border-radius: 2px;
+        min-width: 18rem;
     }
     .card-header {
         display: flex;
@@ -27,7 +28,6 @@ const { company, role, date } = Astro.props;
     .card-role {
         color: #ccc;
         font-size: 0.55rem;
-
         font-weight: 700;
     }
     .card-date {

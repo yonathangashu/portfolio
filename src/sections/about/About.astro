@@ -11,11 +11,9 @@ import Skills from "@/sections/skills/Skills.astro";
         .body {
             font-size: 1rem;
         }
-        @media (min-width: 48rem) {
-            .content-container {
-                padding-bottom: 2rem;
-                padding-top: 4rem;
-            }
+        .content-container {
+            padding-bottom: 2rem;
+            padding-top: 4rem;
         }
     }
 
@@ -36,6 +34,7 @@ import Skills from "@/sections/skills/Skills.astro";
         margin-bottom: 0.5rem;
     }
     .body {
+        line-height:1.6rem;
         padding: 1.8rem;
         max-width: 38rem;
         margin-bottom: 0.7rem;
@@ -53,24 +52,27 @@ import Skills from "@/sections/skills/Skills.astro";
         flex-direction: column;
         align-items: center;
     }
+    .body a {
+        color: #ddd;
+        text-decoration: underline purple 0.15rem;
+        text-underline-offset: 0.2rem;
+    }
+    .body a:hover {
+        color: #fff;
+    }
 </style>
 
 <div class="content-container">
     <h1 class="title">about me</h1>
     <div class="body">
-        <p>I'm Yonathan Gashu</p><p>
-            I focus on low-level systems, reverse engineering, and security
-            research, with experience in binary analysis and exploit
-            development.
-        </p>
-        <p>
-            i like computers and cats and games and music and drawing and
-            snowboaridn gand skateboaridng and i like to play bass and guitar
-            too! i like computers and cats and games and music and drawing and
-            snowboaridn gand skateboaridng and i like to play bass and guitar
-            too! i like computers and cats and games and music and drawing and
-        </p>
-    </div>
+        <p>I'm Yonathan Gashu.</p>
+
+        <p>I work on binary exploitation and reverse engineering.
+            Most of my time is spent in disassemblers, debuggers, and reading way too much assembly.
+            I've done exploit development work at the Department of Defense and I'm currently researching binary similarity with the <a href="https://sites.gatech.edu/capcpsec/">Cyber-Physical Security Lab</a> at Georgia Tech.</p>
+
+        <p> When I'm not breaking binaries, I love playing bass, skateboarding, snowboarding, and spending time with my cat Joey.</p>
+       </div>
     <Experience />
     <Skills />
 </div>

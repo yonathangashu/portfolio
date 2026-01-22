@@ -4,8 +4,7 @@ import LinkedinLogo from "@/assets/linkedin.svg";
 import Footer from "@/components/footer/Footer.astro";
 
 const navItems = [
-	{ title: "Home", path: "/" },
-	{ title: "About", path: "/about" },
+	{ title: "About", path: "/" },
 	{ title: "Posts", path: "/posts" },
 ];
 ---
@@ -29,6 +28,8 @@ const navItems = [
     .title h1 {
         font-size: 1.8rem;
         margin: 0;
+        margin-bottom: 0.3rem;
+        line-height: 1.1;
     }
 
     .title h1 br {
@@ -144,7 +145,7 @@ const navItems = [
     }
 
     .about {
-        line-height: 1;
+        line-height: 1.6;
         font-weight: 300;
         color: #bbb;
     }
@@ -172,11 +173,15 @@ const navItems = [
             <a href="/"><h1>yonathan <br />gashu</h1></a>
         </div>
         <div class="about">
-            <p>computer science student</p><br /><p>
-                interested in systems, security, and reverse engineering
-            </p>
+            <p>
+                security engineer working in
+binary exploitation and reverse engineering</p> 
             <hr />
             <nav class="nav">
+                <a href="/"
+                    >Home</a
+                >✦
+
                 {
                     navItems.map(({ title, path }) => (
                         <>

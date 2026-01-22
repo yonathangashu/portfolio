@@ -17,21 +17,19 @@ posts.sort(
 <style>
     .content-container {
         color: #bbb;
-        padding: 1rem;
-        padding-top: 2rem;
-        padding-bottom: 2rem;
         max-width: 100%;
         margin-left: 0;
+        padding: 0;
     }
 
     .title {
         color: #ddd;
         text-align: center;
-        text-decoration: underline purple 0.2rem;
-        text-underline-offset: 0.3rem;
+        text-decoration: underline purple 0.3rem;
+        text-underline-offset: 0.4rem;
         font-weight: 1000;
         margin-bottom: 0.5rem;
-        font-size: 1.8rem;
+        font-size: 2rem;
     }
 
     .body {
@@ -60,11 +58,11 @@ posts.sort(
     @media (min-width: 48rem) {
         .content-container {
             padding-bottom: 2rem;
-            padding-top: 4rem;
         }
 
         .title {
             font-size: 2.5rem;
+            margin: 2rem;
             text-decoration: underline purple 0.3rem;
             text-underline-offset: 0.4rem;
         }
@@ -118,23 +116,31 @@ posts.sort(
     <div class="content-container">
         <h1 class="title">posts</h1><div class="body">
             {
-                posts
-                    .filter(
-                        ({ frontmatter }) =>
-                            frontmatter.published || import.meta.env.DEV,
-                    )
-                    .map((post) => (
-                        <ul>
-                            <a href={post.url}>
-                                <li>
-                                    <span>
-                                        <p>{post.frontmatter.date}</p> /
-                                        <h1>{post.frontmatter.title}</h1>
-                                    </span>
-                                </li>
-                            </a>
-                        </ul>
-                    ))
+                posts.filter(({ frontmatter }) => frontmatter.published)
+                    .length === 0 ? (
+                    <ul>
+                        <li>
+                            <span>
+                                <h1>Nothing to see here... yet!</h1>
+                            </span>
+                        </li>
+                    </ul>
+                ) : (
+                    posts
+                        .filter(({ frontmatter }) => frontmatter.published)
+                        .map((post) => (
+                            <ul>
+                                <a href={post.url}>
+                                    <li>
+                                        <span>
+                                            <p>{post.frontmatter.date}</p> /
+                                            <h1>{post.frontmatter.title}</h1>
+                                        </span>
+                                    </li>
+                                </a>
+                            </ul>
+                        ))
+                )
             }
         </div>
     </div>
