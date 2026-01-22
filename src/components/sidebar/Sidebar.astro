@@ -5,7 +5,7 @@ import Footer from "@/components/footer/Footer.astro";
 
 const navItems = [
 	{ title: "About", path: "/" },
-	{ title: "Posts", path: "/posts" },
+	{ title: "Posts", path: "/posts/" },
 ];
 ---
 
@@ -174,13 +174,12 @@ const navItems = [
         </div>
         <div class="about">
             <p>
-                security engineer working in
-binary exploitation and reverse engineering</p> 
+                security engineer working in binary exploitation and reverse
+                engineering
+            </p>
             <hr />
             <nav class="nav">
-                <a href="/"
-                    >Home</a
-                >✦
+                <a href="/">Home</a>✦
 
                 {
                     navItems.map(({ title, path }) => (
