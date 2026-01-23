@@ -7,7 +7,6 @@ const { skill } = Astro.props;
         display: flex;
         flex-direction: row;
         align-items: center;
-        gap: 0.5rem;
         width: 8rem;
         margin-bottom: 0.55rem;
         background-color: #1b1226;
@@ -17,6 +16,7 @@ const { skill } = Astro.props;
     .skill {
         color: #ddd;
         margin: 0;
+        margin-left: 0.3rem;
         font-size: 0.8rem;
         font-weight: 1000;
         text-decoration: underline #4fd1ff 0.1rem;
@@ -24,10 +24,9 @@ const { skill } = Astro.props;
     }
 
     @media (min-width: 48rem) {
-        .card {
-            padding: 0.55rem;
-        }
         .skill {
+            padding: 0.55rem;
+            padding-left: 0.25rem;
             font-size: 0.95rem;
             width: 9rem;
             text-decoration: underline #4fd1ff 0.2rem;
@@ -35,10 +34,9 @@ const { skill } = Astro.props;
         }
     }
     @media (min-width: 72rem) {
-        .card {
-            padding: 0.8rem;
-        }
         .skill {
+            padding: 0.8rem;
+
             font-size: 1.1rem;
         }
     }

@@ -3,3 +3,25 @@
 *::after {
 	box-sizing: border-box;
 }
+
+:root {
+	--font-body:
+		var(--font-charter), system-ui, -apple-system, BlinkMacSystemFont,
+		"Segoe UI", sans-serif;
+	--font-heading: var(--font-charter), Georgia, serif;
+}
+
+body {
+	font-family: var(--font-body);
+	font-weight: 400;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--font-heading);
+	font-weight: 600;
+}
