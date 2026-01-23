@@ -14,7 +14,8 @@ const { title = "ygashu" } = Astro.props;
 
 	main {
 		flex: 1;
-		overflow: auto;
+		overflow-y: auto;
+		overflow-x: hidden;
 		display: flex;
 		flex-direction: column;
 	}
@@ -23,7 +24,7 @@ const { title = "ygashu" } = Astro.props;
 		display: block;
 		background-color: #0b040f;
 		margin-top: auto;
-		padding: 1rem;
+		padding: 1rem 0;
 	}
 
 	.main-container {

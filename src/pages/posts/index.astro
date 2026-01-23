@@ -117,8 +117,10 @@ posts.sort(
     <div class="content-container">
         <h1 class="title">posts</h1><div class="body">
             {
-                posts.filter(({ frontmatter }) => frontmatter.published)
-                    .length === 0 ? (
+                posts.filter(
+                    ({ frontmatter }) =>
+                        frontmatter.published || import.meta.env.DEV,
+                ).length === 0 ? (
                     <ul>
                         <li>
                             <span>
@@ -128,7 +130,10 @@ posts.sort(
                     </ul>
                 ) : (
                     posts
-                        .filter(({ frontmatter }) => frontmatter.published)
+                        .filter(
+                            ({ frontmatter }) =>
+                                frontmatter.published || import.meta.env.DEV,
+                        )
                         .map((post) => (
                             <ul>
                                 <a href={post.url}>
