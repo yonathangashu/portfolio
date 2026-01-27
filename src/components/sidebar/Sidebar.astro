@@ -1,7 +1,6 @@
 ---
 import GithubLogo from "@/assets/github.svg";
 import LinkedinLogo from "@/assets/linkedin.svg";
-import Footer from "@/components/footer/Footer.astro";
 
 const navItems = [
 	{ title: "About", path: "/" },
@@ -51,15 +50,12 @@ const navItems = [
         gap: 0.5rem;
         font-size: 0.6rem;
     }
-    .footer-wrapper {
-        display: none;
-    }
     @media (min-width: 48rem) {
         .sidebar {
             flex-direction: column;
             justify-content: space-between;
             width: 14rem;
-            height: 100%;
+            height: 100vh;
             padding: 1.5rem;
             font-size: 0.7rem;
         }
@@ -101,10 +97,6 @@ const navItems = [
 
         .logo {
             width: 12px;
-        }
-        .footer-wrapper {
-            display: block;
-            margin-top: auto;
         }
     }
 
