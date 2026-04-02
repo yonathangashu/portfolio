@@ -38,15 +38,21 @@ import ProjectCard from "@/components/projectcard/ProjectCard.astro";
 <h1 class="title">projects</h1>
 <div class="projects-container">
     <ProjectCard
-        name="your-project"
-        description="A short description of what it does and why it matters."
-        tags={["rust", "binary", "cli"]}
-        href="https://github.com/yonathangashu/your-project"
+        name="uniview-ipc-analysis"
+        description="Independent security analysis of a commercial IP camera. Obtained root access via UART and U-Boot manipulation, documenting attack surface across firmware, network services, and hardware interfaces."
+        tags={["hardware", "linux", "firmware", "reverse engineering"]}
+        href="https://github.com/yonathangashu/uniview-ipc-analysis"
     />
     <ProjectCard
-        name="another-project"
-        description="Another short description here."
-        tags={["c", "linux", "reverse engineering"]}
-        href="https://github.com/yourusername/another-project"
+        name="lewoc"
+        description="A LoRa-enabled off-grid wireless communication device built in no-std Rust on an RP Pico 2W."
+        tags={["embedded", "rust", "hardware"]}
+        href="https://github.com/tsar-boomba/lewoc"
+    />
+    <ProjectCard
+        name="raycaster"
+        description="2.5D raycasting engine implemented from scratch in C++ with SDL2, using ray-wall intersection and distance-based projection for real-time rendering."
+        tags={["c++", "sdl2", "graphics"]}
+        href="https://github.com/yonathangashu/raycaster"
     />
 </div>
