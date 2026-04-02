@@ -50,38 +50,58 @@ import SkillCard from "@/components/skillcard/SkillCard.astro";
         margin-top: 4rem;
         margin-bottom: 0.5rem;
     }
+    .skills-background {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 2rem;
+        padding-bottom: 2rem;
+        width: 100%;
+        background-color: #211736;
+    }
 </style>
-
-<h1 class="title">skills</h1>
-<div class="skills-container">
-    <SkillCard skill="Rust">
-        <RustLogo
-            class="logo"
-            slot="logo"
-            width={36}
-            height="auto"
-        /></SkillCard
-    >
-    <SkillCard skill="C">
-        <CLogo class="logo" slot="logo" width={36} height="auto" /></SkillCard
-    >
-    <SkillCard skill="Linux">
-        <LinuxLogo
-            class="logo"
-            slot="logo"
-            width={36}
-            height="auto"
-        /></SkillCard
-    >
-    <SkillCard skill="Ghidra">
-        <GhidraLogo
-            class="logo"
-            slot="logo"
-            width={36}
-            height="auto"
-        /></SkillCard
-    >
-    <SkillCard skill="Java">
-        <JavaLogo class="logo" slot="logo" width={36} height={36} /></SkillCard
-    >
+<div class="skills-background">
+    <h1 class="title">skills</h1>
+    <div class="skills-container">
+        <SkillCard skill="Rust">
+            <RustLogo
+                class="logo"
+                slot="logo"
+                width={36}
+                height="auto"
+            /></SkillCard
+        >
+        <SkillCard skill="C">
+            <CLogo
+                class="logo"
+                slot="logo"
+                width={36}
+                height="auto"
+            /></SkillCard
+        >
+        <SkillCard skill="Linux">
+            <LinuxLogo
+                class="logo"
+                slot="logo"
+                width={36}
+                height="auto"
+            /></SkillCard
+        >
+        <SkillCard skill="Ghidra">
+            <GhidraLogo
+                class="logo"
+                slot="logo"
+                width={36}
+                height="auto"
+            /></SkillCard
+        >
+        <SkillCard skill="Java">
+            <JavaLogo
+                class="logo"
+                slot="logo"
+                width={36}
+                height={36}
+            /></SkillCard
+        >
+    </div>
 </div>

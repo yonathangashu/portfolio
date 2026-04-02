@@ -1,5 +1,6 @@
 ---
 import Experience from "@/sections/experience/Experience.astro";
+import Projects from "@/sections/projects/Projects.astro";
 import Skills from "@/sections/skills/Skills.astro";
 ---
 
@@ -34,7 +35,7 @@ import Skills from "@/sections/skills/Skills.astro";
         margin-bottom: 0.5rem;
     }
     .body {
-        line-height:1.6rem;
+        line-height: 1.6rem;
         padding: 1.8rem;
         max-width: 38rem;
         margin-bottom: 0.7rem;
@@ -51,6 +52,7 @@ import Skills from "@/sections/skills/Skills.astro";
         display: flex;
         flex-direction: column;
         align-items: center;
+        padding-bottom: 0;
     }
     .body a {
         color: #ddd;
@@ -67,12 +69,22 @@ import Skills from "@/sections/skills/Skills.astro";
     <div class="body">
         <p>I'm Yonathan Gashu.</p>
 
-        <p>I work on binary exploitation and reverse engineering.
-            Most of my time is spent in disassemblers, debuggers, and reading way too much assembly.
-            I've done exploit development work at the Department of Defense and I'm currently researching binary similarity with the <a href="https://sites.gatech.edu/capcpsec/">Cyber-Physical Security Lab</a> at Georgia Tech.</p>
+        <p>
+            I work on binary exploitation and reverse engineering. Most of my
+            time is spent in disassemblers, debuggers, and reading way too much
+            assembly. I've done exploit development work at the Department of
+            Defense and I'm currently researching binary similarity with the <a
+                href="https://sites.gatech.edu/capcpsec/"
+                >Cyber-Physical Security Lab</a
+            > at Georgia Tech.
+        </p>
 
-        <p> When I'm not breaking binaries, I love playing bass, skateboarding, snowboarding, and spending time with my cat Joey.</p>
-       </div>
+        <p>
+            When I'm not breaking binaries, I love playing bass, skateboarding,
+            snowboarding, and spending time with my cat Joey.
+        </p>
+    </div>
     <Experience />
+    <Projects />
     <Skills />
 </div>

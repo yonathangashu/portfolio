@@ -1,0 +1,121 @@
+---
+const { name, description, tags, href } = Astro.props;
+---
+
+<style>
+    .card {
+        padding: 0.55rem;
+        background-color: #1b1226;
+        border: 1px solid rgba(79, 209, 255, 0.15);
+        border-radius: 2px;
+        width: 14rem;
+    }
+    .card-header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.55rem;
+    }
+    .name {
+        color: #ddd;
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 1000;
+        text-decoration: underline #4fd1ff 0.15rem;
+        text-underline-offset: 0.25rem;
+    }
+    .name a {
+        color: inherit;
+        text-decoration: inherit;
+    }
+    .card-description {
+        color: #bbb;
+        font-size: 0.7rem;
+        font-weight: 400;
+        margin: 0;
+        margin-bottom: 0.55rem;
+        line-height: 1.4;
+    }
+    .card-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.3rem;
+        margin-top: 0.4rem;
+    }
+    .tag {
+        font-size: 0.6rem;
+        color: #9a9a9a;
+        background-color: rgba(140, 82, 255, 0.12);
+        padding: 0.1rem 0.35rem;
+        border-radius: 2px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+    }
+
+    @media (min-width: 48rem) {
+        .card {
+            width: 16rem;
+            padding: 0.55rem;
+        }
+        .name {
+            font-size: 1.15rem;
+        }
+        .card-description {
+            font-size: 0.75rem;
+            margin: 0.45rem;
+            margin-bottom: 0.45rem;
+        }
+        .card-tags {
+            margin-left: 0.45rem;
+        }
+    }
+    @media (min-width: 72rem) {
+        .card {
+            width: 18rem;
+            padding: 0.8rem;
+        }
+        .name {
+            font-size: 1.3rem;
+        }
+        .card-description {
+            font-size: 0.85rem;
+            margin: 0.55rem;
+            margin-bottom: 0.55rem;
+        }
+        .card-tags {
+            margin-left: 0.55rem;
+        }
+        .tag {
+            font-size: 0.65rem;
+        }
+    }
+</style>
+
+<div class="card">
+    <div class="card-header">
+        <slot name="logo" />
+        <h1 class="name">
+            {
+                href ? (
+                    <a href={href} target="_blank" rel="noopener noreferrer">
+                        {name}
+                    </a>
+                ) : (
+                    name
+                )
+            }
+        </h1>
+    </div>
+    <p class="card-description">{description}</p>
+    {
+        tags && (
+            <div class="card-tags">
+                {tags.map((tag: string) => (
+                    <span class="tag">{tag}</span>
+                ))}
+            </div>
+        )
+    }
+</div>

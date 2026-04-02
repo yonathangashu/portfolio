@@ -1,0 +1,52 @@
+---
+import ProjectCard from "@/components/projectcard/ProjectCard.astro";
+---
+
+<style>
+    @media (min-width: 48rem) {
+        .title {
+            font-size: 2.5rem;
+        }
+    }
+    @media (min-width: 72rem) {
+        .title {
+            font-size: 3rem;
+        }
+    }
+    .projects-container {
+        color: #9a9a9a;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.8rem;
+        padding: 2rem;
+    }
+    .title {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: #ddd;
+        text-decoration: underline #682f8e 0.3rem;
+        text-underline-offset: 0.4rem;
+        font-weight: 1000;
+        margin-top: 4rem;
+        margin-bottom: 0.5rem;
+    }
+</style>
+
+<h1 class="title">projects</h1>
+<div class="projects-container">
+    <ProjectCard
+        name="your-project"
+        description="A short description of what it does and why it matters."
+        tags={["rust", "binary", "cli"]}
+        href="https://github.com/yonathangashu/your-project"
+    />
+    <ProjectCard
+        name="another-project"
+        description="Another short description here."
+        tags={["c", "linux", "reverse engineering"]}
+        href="https://github.com/yourusername/another-project"
+    />
+</div>
