@@ -14,6 +14,14 @@ If you know anything about anything you know that Ghidra is awesome and supder d
 
 This is a post written in Markdown.
 
+```c
+int main {
+
+}
+```
+
+`this is an inline code block`
+
 ## HII
 
 ### HIII

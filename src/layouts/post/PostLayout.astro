@@ -4,7 +4,6 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import type { PostFrontmatter } from "@/utils/types";
 
 type Props = MDXLayoutProps<PostFrontmatter>;
-
 const { frontmatter } = Astro.props as Props;
 ---
 
@@ -14,27 +13,25 @@ const { frontmatter } = Astro.props as Props;
 		padding: 1rem;
 		padding-top: 2rem;
 		padding-bottom: 2rem;
-		margin-left: 1.5rem;
+		margin-left: 0;
+		margin-right: 0;
 		max-width: 100%;
 		font-size: 0.9rem;
 	}
-
 	.post {
 		margin: auto;
 		line-height: 1.4rem;
-		padding: 1rem;
+		padding: 0 0.5rem;
 		padding-top: 0;
 		margin-bottom: 0.7rem;
 		max-width: 100%;
 	}
-
 	.post-header {
 		margin-bottom: 1.2rem;
 		transform-origin: top;
 		transform: skewY(-2deg) translate(-0.5rem, -0.4rem);
 		max-width: 100%;
 	}
-
 	.post-title {
 		color: #ddd;
 		text-decoration: underline #682f8e 0.2rem;
@@ -45,17 +42,14 @@ const { frontmatter } = Astro.props as Props;
 		font-style: italic;
 		font-size: 1.5rem;
 	}
-
 	.post-meta {
 		font-size: 0.75rem;
 		font-style: italic;
 	}
-
 	.post h1 {
 		font-size: 1.5rem;
 		margin-top: 0;
 	}
-
 	.post h1,
 	h2,
 	h3,
@@ -65,7 +59,6 @@ const { frontmatter } = Astro.props as Props;
 		transform: skewY(-2deg) translate(-0.5rem, 0.25rem);
 		transform-origin: top;
 	}
-
 	@media (min-width: 48rem) {
 		.content-container {
 			padding-top: 4rem;
@@ -75,33 +68,27 @@ const { frontmatter } = Astro.props as Props;
 			margin-right: 2rem;
 			font-size: 1rem;
 		}
-
 		.post {
 			max-width: 38rem;
 			line-height: 1.5rem;
 			padding: 1.8rem;
 			padding-top: 0;
 		}
-
 		.post-header {
 			margin-bottom: 1.5rem;
 			transform: skewY(-2deg) translate(-1rem, -0.4rem);
 		}
-
 		.post-title {
 			text-decoration: underline #682f8e 0.3rem;
 			text-underline-offset: 0.4rem;
 			font-size: 2rem;
 		}
-
 		.post-meta {
 			font-size: 0.9rem;
 		}
-
 		.post h1 {
 			font-size: 2rem;
 		}
-
 		.post h1,
 		h2,
 		h3,
@@ -111,17 +98,15 @@ const { frontmatter } = Astro.props as Props;
 			transform: skewY(-2deg) translate(-1rem, 0.25rem);
 		}
 	}
-
 	@media (min-width: 72rem) {
 		.post {
 			max-width: 48rem;
 		}
 		.content-container {
-			margin-left: 12rem;
+			margin-left: 8rem;
 			margin-right: 4rem;
 		}
 	}
-
 	.post a {
 		color: inherit;
 	}
@@ -152,6 +137,46 @@ const { frontmatter } = Astro.props as Props;
 		text-decoration-color: #682f8e;
 		text-underline-offset: 4%;
 		text-decoration-thickness: 0.25ex;
+	}
+	.post pre {
+		background-color: #130920 !important;
+		border-radius: 0 4px 4px 0;
+		border-left: 3px solid #682f8e;
+		padding: 1.2rem 1.4rem;
+		overflow-x: auto;
+		font-size: 0.85rem;
+		line-height: 1.6;
+		margin-bottom: 1.2rem;
+		position: relative;
+		white-space: pre;
+		word-break: normal;
+		-webkit-overflow-scrolling: touch;
+	}
+	.post :not(pre) > code {
+		border-radius: 3px;
+		color: #ccc;
+		background: #130920;
+		padding: 0.2rem 0.4rem;
+		font-size: 0.875em;
+	}
+	.post pre::before {
+		content: attr(data-language);
+		position: absolute;
+		top: 0.5rem;
+		right: 0.75rem;
+		padding: 0 0.2rem;
+		font-size: 0.65rem;
+		background: #1e0e32;
+		color: #fff;
+		text-transform: uppercase;
+		border-radius: 3px;
+		font-family: monospace;
+		letter-spacing: 0.05em;
+		opacity: 0.8;
+	}
+	.post img {
+		max-width: 100%;
+		height: auto;
 	}
 </style>
 <BaseLayout title={frontmatter.title}>
