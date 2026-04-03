@@ -18,9 +18,26 @@ export default defineConfig({
 			},
 		],
 	},
+
 	markdown: {
 		shikiConfig: {
 			theme: "github-dark",
+			transformers: [
+				{
+					pre(node) {
+						const lang = node.properties.dataLanguage;
+						return {
+							type: "element",
+							tagName: "div",
+							properties: {
+								class: "code-wrapper",
+								dataLanguage: lang,
+							},
+							children: [node],
+						};
+					},
+				},
+			],
 		},
 	},
 });

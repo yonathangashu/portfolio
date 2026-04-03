@@ -10,7 +10,7 @@ const { frontmatter } = Astro.props as Props;
 <style is:global>
 	.content-container {
 		color: #bbb;
-		padding: 1rem;
+		padding: 2rem;
 		padding-top: 2rem;
 		padding-bottom: 2rem;
 		margin-left: 0;
@@ -46,6 +46,25 @@ const { frontmatter } = Astro.props as Props;
 		font-size: 0.75rem;
 		font-style: italic;
 	}
+	.post pre {
+		background-color: #130920 !important;
+		border-left: 3px solid #682f8e;
+		padding: 1rem 1.2rem;
+		overflow-x: auto;
+		font-size: 0.675rem;
+		line-height: 1.6;
+		margin-bottom: 0;
+		white-space: pre;
+		word-break: normal;
+		-webkit-overflow-scrolling: touch;
+	}
+
+	.post img {
+		border-radius: 4px;
+		width: 100%;
+		max-height: 24rem;
+	}
+
 	.post h1 {
 		font-size: 1.5rem;
 		margin-top: 0;
@@ -61,10 +80,11 @@ const { frontmatter } = Astro.props as Props;
 	}
 	@media (min-width: 48rem) {
 		.content-container {
+			padding: 0.5rem;
 			padding-top: 4rem;
 			padding-bottom: 4rem;
-			max-width: 44rem;
-			margin-left: 6rem;
+			max-width: 48rem;
+			margin-left: 4rem;
 			margin-right: 2rem;
 			font-size: 1rem;
 		}
@@ -86,6 +106,13 @@ const { frontmatter } = Astro.props as Props;
 		.post-meta {
 			font-size: 0.9rem;
 		}
+		.post pre {
+			padding: 1.2rem 1.4rem;
+			font-size: 0.85rem;
+		}
+		.post img {
+			max-height: 32rem;
+		}
 		.post h1 {
 			font-size: 2rem;
 		}
@@ -103,8 +130,12 @@ const { frontmatter } = Astro.props as Props;
 			max-width: 48rem;
 		}
 		.content-container {
-			margin-left: 8rem;
+			padding: 2rem;
+			margin-left: 5rem;
 			margin-right: 4rem;
+		}
+		.post img {
+			max-height: 48rem;
 		}
 	}
 	.post a {
@@ -138,28 +169,20 @@ const { frontmatter } = Astro.props as Props;
 		text-underline-offset: 4%;
 		text-decoration-thickness: 0.25ex;
 	}
-	.post pre {
-		background-color: #130920 !important;
-		border-radius: 0 4px 4px 0;
-		border-left: 3px solid #682f8e;
-		padding: 1.2rem 1.4rem;
-		overflow-x: auto;
-		font-size: 0.85rem;
-		line-height: 1.6;
-		margin-bottom: 1.2rem;
-		position: relative;
-		white-space: pre;
-		word-break: normal;
-		-webkit-overflow-scrolling: touch;
-	}
 	.post :not(pre) > code {
 		border-radius: 3px;
 		color: #ccc;
 		background: #130920;
 		padding: 0.2rem 0.4rem;
-		font-size: 0.875em;
+		font-size: 0.875rem;
 	}
-	.post pre::before {
+	.post .code-wrapper {
+		position: relative;
+		margin-bottom: 1.2rem;
+		overflow: hidden;
+		border-radius: 0 4px 4px 0;
+	}
+	.post .code-wrapper::before {
 		content: attr(data-language);
 		position: absolute;
 		top: 0.5rem;
@@ -173,11 +196,7 @@ const { frontmatter } = Astro.props as Props;
 		font-family: monospace;
 		letter-spacing: 0.05em;
 		opacity: 0.8;
-	}
-	.post img {
-		border-radius: 4px;
-		width: 100%;
-		max-height: 48rem;
+		z-index: 1;
 	}
 </style>
 <BaseLayout title={frontmatter.title}>

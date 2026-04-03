@@ -4,7 +4,7 @@ title: Pentesting an IP Camera
 date: 04-02-2026
 author: Yonathan Gashu
 description:
-tags: ["#hardware", "security", ""]
+tags: ["#hardware", "#security", ""]
 published: false
 ---
 
@@ -43,7 +43,7 @@ With the pinout identified, I hooked up my Tigard to the pins using some strippe
 
 I used the following command to open up a serial console and connect to the Tigard with the most common UART baud rate (115200):
 
-```bash
+```
  picocom -b 115200 /dev/tty.usbserial-TG11171a0
 ```
 
@@ -91,7 +91,7 @@ Now, I could start interacting with the device, albeit in a restricted capacity.
 
 The first thing I wanted to know was what I was working with, so I ran `help`:
 
-```shell
+```
 uboot # help
 ?         - alias for 'help'
 adc       - ADC sub-system
