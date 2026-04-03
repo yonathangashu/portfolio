@@ -59,6 +59,37 @@ const { frontmatter } = Astro.props as Props;
 		-webkit-overflow-scrolling: touch;
 	}
 
+	.post :not(pre) > code {
+		border-radius: 3px;
+		color: #ccc;
+		background: #130920;
+		padding: 0.2rem 0.4rem;
+		font-size: 0.875rem;
+	}
+	.post .code-wrapper {
+		position: relative;
+		margin-bottom: 1.2rem;
+		overflow: hidden;
+		border-radius: 0 4px 4px 0;
+	}
+	.post .code-wrapper::before {
+		content: attr(data-language);
+		position: absolute;
+		margin-top: 0.5rem;
+		top: 0.5rem;
+		right: 0.5rem;
+		font-size: 0.5rem;
+		padding: 0 0.2rem;
+		background: #1e0e32;
+		color: #fff;
+		text-transform: uppercase;
+		border-radius: 3px;
+		font-family: monospace;
+		letter-spacing: 0.05em;
+		opacity: 0.8;
+		z-index: 1;
+	}
+
 	.post img {
 		border-radius: 4px;
 		width: 100%;
@@ -83,6 +114,7 @@ const { frontmatter } = Astro.props as Props;
 			padding: 0.5rem;
 			padding-top: 4rem;
 			padding-bottom: 4rem;
+			padding-left: 0rem;
 			max-width: 48rem;
 			margin-left: 4rem;
 			margin-right: 2rem;
@@ -93,6 +125,7 @@ const { frontmatter } = Astro.props as Props;
 			line-height: 1.5rem;
 			padding: 1.8rem;
 			padding-top: 0;
+			padding-left: 1rem;
 		}
 		.post-header {
 			margin-bottom: 1.5rem;
@@ -109,6 +142,9 @@ const { frontmatter } = Astro.props as Props;
 		.post pre {
 			padding: 1.2rem 1.4rem;
 			font-size: 0.85rem;
+		}
+		.post .code-wrapper::before {
+			font-size: 0.65rem;
 		}
 		.post img {
 			max-height: 32rem;
@@ -131,7 +167,7 @@ const { frontmatter } = Astro.props as Props;
 		}
 		.content-container {
 			padding: 2rem;
-			margin-left: 5rem;
+			margin-left: 6rem;
 			margin-right: 4rem;
 		}
 		.post img {
@@ -168,35 +204,6 @@ const { frontmatter } = Astro.props as Props;
 		text-decoration-color: #682f8e;
 		text-underline-offset: 4%;
 		text-decoration-thickness: 0.25ex;
-	}
-	.post :not(pre) > code {
-		border-radius: 3px;
-		color: #ccc;
-		background: #130920;
-		padding: 0.2rem 0.4rem;
-		font-size: 0.875rem;
-	}
-	.post .code-wrapper {
-		position: relative;
-		margin-bottom: 1.2rem;
-		overflow: hidden;
-		border-radius: 0 4px 4px 0;
-	}
-	.post .code-wrapper::before {
-		content: attr(data-language);
-		position: absolute;
-		top: 0.5rem;
-		right: 0.75rem;
-		padding: 0 0.2rem;
-		font-size: 0.65rem;
-		background: #1e0e32;
-		color: #fff;
-		text-transform: uppercase;
-		border-radius: 3px;
-		font-family: monospace;
-		letter-spacing: 0.05em;
-		opacity: 0.8;
-		z-index: 1;
 	}
 </style>
 <BaseLayout title={frontmatter.title}>
