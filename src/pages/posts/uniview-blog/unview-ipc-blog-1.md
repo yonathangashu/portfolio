@@ -8,8 +8,9 @@ tags: ["#hardware", "#security", ""]
 published: false
 ---
 
-There's a gap between solving CTF challenges and poking at a real device running unknown firmware.
-I bought a Uniview SC3243 security camera off eBay to find out how wide it was.
+If you've [blank] then you know there's a gap between solving CTF challenges and poking at a real device running unknown firmware.
+
+I bought a Uniview SC3243 security camera off eBay to find out how wide that gap really is.
 With the camera in hand, the first step was opening it up.
 
 ## Hardware Enum

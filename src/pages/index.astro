@@ -9,7 +9,7 @@ const sorted = posts.sort(
 );
 ---
 
-<style>
+<style is:global>
     .posts-container {
         color: #bbb;
         padding: 2rem;
@@ -47,9 +47,9 @@ const sorted = posts.sort(
     }
     .post-preview-body {
         position: relative;
-        max-height: 12rem;
+        max-height: 18rem;
         overflow: hidden;
-        line-height: 1.4rem;
+        line-height: 1.5rem;
         text-align: justify;
     }
     .post-preview-body::after {
@@ -59,13 +59,8 @@ const sorted = posts.sort(
         left: 0;
         right: 0;
         height: 6rem;
-        background: linear-gradient(transparent, #160d27);
+        background: linear-gradient(transparent, #1b112d);
         pointer-events: none;
-    }
-    .post-divider {
-        border: none;
-        border-top: 1px solid #682f8e44;
-        margin-bottom: 4rem;
     }
     @media (min-width: 48rem) {
         .posts-container {
@@ -83,7 +78,7 @@ const sorted = posts.sort(
             font-size: 0.9rem;
         }
         .post-preview-body {
-            max-height: 14rem;
+            max-height: 24rem;
             line-height: 1.5rem;
         }
         .post-preview-header {
@@ -94,6 +89,23 @@ const sorted = posts.sort(
         .posts-container {
             margin-right: 4rem;
         }
+    }
+
+    .post-preview-body h1,
+    .post-preview-body h2,
+    .post-preview-body h3,
+    .post-preview-body h4,
+    .post-preview-body h5,
+    .post-preview-body h6 {
+        color: #ddd;
+        font-weight: 700;
+        text-rendering: geometricPrecision;
+        font-style: italic;
+        text-decoration-line: underline;
+        text-decoration-color: #682f8e;
+        text-underline-offset: 4%;
+        text-decoration-thickness: 0.25ex;
+        transform: none;
     }
 </style>
 
@@ -122,7 +134,6 @@ const sorted = posts.sort(
                             />
                         </div>
                     </div>
-                    {i < sorted.length - 1 && <hr class="post-divider" />}
                 </>
             ))
         }
