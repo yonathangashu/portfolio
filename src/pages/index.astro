@@ -1,6 +1,130 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import About from "@/sections/about/About.astro";
+
+const posts = await Astro.glob("./posts/**/*.md");
+const sorted = posts.sort(
+	(a, b) =>
+		new Date(b.frontmatter.date).getTime() -
+		new Date(a.frontmatter.date).getTime(),
+);
 ---
 
-<BaseLayout title="about"><About /></BaseLayout>
+<style>
+    .posts-container {
+        color: #bbb;
+        padding: 2rem;
+        padding-top: 4rem;
+        margin-left: 0;
+        max-width: 100%;
+        font-size: 0.9rem;
+    }
+    .post-preview {
+        position: relative;
+        margin-bottom: 4rem;
+        max-width: 100%;
+    }
+    .post-preview-header {
+        margin-bottom: 1.2rem;
+        transform-origin: top;
+        transform: skewY(-2deg) translate(-0.5rem, -0.4rem);
+    }
+    .post-preview-title {
+        color: #ddd;
+        text-decoration: underline #682f8e 0.2rem;
+        text-underline-offset: 0.3rem;
+        font-weight: 1000;
+        font-style: italic;
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+    .post-preview-title a {
+        color: inherit;
+        text-decoration: inherit;
+    }
+    .post-preview-meta {
+        font-size: 0.75rem;
+        font-style: italic;
+    }
+    .post-preview-body {
+        position: relative;
+        max-height: 12rem;
+        overflow: hidden;
+        line-height: 1.4rem;
+        text-align: justify;
+    }
+    .post-preview-body::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 6rem;
+        background: linear-gradient(transparent, #160d27);
+        pointer-events: none;
+    }
+    .post-divider {
+        border: none;
+        border-top: 1px solid #682f8e44;
+        margin-bottom: 4rem;
+    }
+    @media (min-width: 48rem) {
+        .posts-container {
+            max-width: 44rem;
+            margin-left: 3rem;
+            margin-right: 2rem;
+            font-size: 1rem;
+        }
+        .post-preview-title {
+            font-size: 2rem;
+            text-decoration: underline #682f8e 0.3rem;
+            text-underline-offset: 0.4rem;
+        }
+        .post-preview-meta {
+            font-size: 0.9rem;
+        }
+        .post-preview-body {
+            max-height: 14rem;
+            line-height: 1.5rem;
+        }
+        .post-preview-header {
+            transform: skewY(-2deg) translate(-1rem, -0.4rem);
+        }
+    }
+    @media (min-width: 72rem) {
+        .posts-container {
+            margin-right: 4rem;
+        }
+    }
+</style>
+
+<BaseLayout title="home">
+    <div class="posts-container">
+        {
+            sorted.map((post, i) => (
+                <>
+                    <div class="post-preview">
+                        <div class="post-preview-header">
+                            <span class="post-preview-meta">
+                                {post.frontmatter.date}
+                                {post.frontmatter.tags &&
+                                    post.frontmatter.tags
+                                        .map((tag: string) => ` ✦ ${tag}`)
+                                        .join("")}
+                            </span>
+                            <h1 class="post-preview-title">
+                                <a href={post.url}>{post.frontmatter.title}</a>
+                            </h1>
+                        </div>
+                        <div class="post-preview-body">
+                            <div
+                                class="post-preview-body"
+                                set:html={post.compiledContent()}
+                            />
+                        </div>
+                    </div>
+                    {i < sorted.length - 1 && <hr class="post-divider" />}
+                </>
+            ))
+        }
+    </div>
+</BaseLayout>

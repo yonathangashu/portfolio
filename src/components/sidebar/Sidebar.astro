@@ -3,8 +3,9 @@ import GithubLogo from "@/assets/github.svg";
 import LinkedinLogo from "@/assets/linkedin.svg";
 
 const navItems = [
-	{ title: "about", path: "/" },
-	{ title: "posts", path: "/posts/" },
+	{ title: "home", path: "/" },
+	{ title: "about", path: "/about" },
+	{ title: "posts", path: "/posts" },
 ];
 ---
 
@@ -172,8 +173,6 @@ const navItems = [
             </p>
             <hr />
             <nav class="nav">
-                <a href="/">home</a>✦
-
                 {
                     navItems.map(({ title, path }) => (
                         <>
