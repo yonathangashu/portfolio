@@ -1,21 +1,24 @@
 ---
 layout: ../../../layouts/post/PostLayout.astro
-title: Pentesting an IP Camera
+title: "From UART to Root: Vendor Shell Escape on a Uniview IP Camera"
 date: 04-02-2026
 author: Yonathan Gashu
 description:
-tags: ["#hardware", "#security", ""]
+tags: ["#security", "#embedded", "#hardware"]
 published: false
 ---
 
-If you've [blank] then you know there's a gap between solving CTF challenges and poking at a real device running unknown firmware.
+There's a gap between solving CTF challenges and poking at a real device running unknown firmware.
 
 I bought a Uniview SC3243 security camera off eBay to find out how wide that gap really is.
+
+![](./photos/first_look.jpg)
+
 With the camera in hand, the first step was opening it up.
 
-## Hardware Enum
+## Hardware Enumeration
 
-Removing three screws and popping open the enclosure revealed a small PCB with a NAND flash chip.
+Removing three screws and popping open the enclosure revealed a small PCB with a NAND flash chip:
 
 ![](./photos/first_open.png)
 
@@ -24,23 +27,25 @@ Unpopulated headers on embedded hardware are usually there for good reason, whet
 
 The next step was probing each pin with a multimeter to map the pinout.
 
-## Pinout Id
+## Mapping the Pinout
 
 The easiest thing to identify is a ground pin, so I started there.
-I placed the ground lead on some metal plating in the camera, and poked each of the four headers with the positive probe. After reaching the outer most pin, the multimeter read 0, so I knew I'd found it. In the process of finding GND, I also uncovered another important detail: the pins were using a 3.3v logic level.
+I placed the ground probe on some metal plating in the camera, and poked each of the four headers with the positive probe. After reaching the outermost pin, the multimeter read 0, so I knew I'd found it. In the process of finding GND, I also uncovered another important detail: the pins were using a 3.3v logic level.
 This hinted heavily at UART, which is a great sign.
 
-Next I needed to figure out which pin was transmitting data.
+Next, I needed to figure out which pin was transmitting data.
 Assuming the TX pin would have something to output on bootup, I rebooted the device and observed the behavior of the remaining 3 pins.
 I noticed that one of them was fluctuating in voltage when the camera turned on, while the others seemed relatively constant around 3.3v.
 That's our TX.
-The remaining two were suspected RX and VCC pins. Identifying these was a bit less scientific since both sat around 3.3V. After trying both I got the final pinout identified in the picture below.
+The remaining two were suspected RX and VCC pins. Identifying these was a bit less scientific since both consistently sat around 3.3V. After trying both I got the final pinout identified in the picture below.
 
 ![](./photos/pinout.png)
 
 ## Serial Access
 
 With the pinout identified, I hooked up my Tigard to the pins using some stripped jumper cables (because PCBite probes are not cheap) and set the level shifter to 3.3v.
+
+![](./photos/tigard.jpg)
 
 I used the following command to open up a serial console and connect to the Tigard with the most common UART baud rate (115200):
 
@@ -75,18 +80,66 @@ root login:
 
 I typed in "root", hit enter, and then boom!
 
-Nothing happened.
+Nothing happened...
 
 After about an hour of confusion and thinking that picocom was the problem, I realized I'd forgotten to hook up GND...
-Woops.
+Woops!
 
-Anyways, after everything was _properly_ connected, I was able to interrupt the autoboot process and was greeted with this prompt:
+Anyways, after everything was _properly_ connected, I let the camera boot normally and tried logging in as root again.
+
+I didn't find default credentials online, but after cycling through the usual suspects (`123456`, `admin`, `password`), I tried `uniview` on a whim and it worked!
+
+After logging in I was dropped into this:
+
+```
+User@/root> help
+    logout
+    exit
+    update
+    systemreport.sh
+    display
+    ifconfig
+    ping
+    _hide
+    sdformat
+    resetconfig
+    killall
+    date
+    catmwarestate
+    catfpn
+    <...>
+    download_logo
+    cleancfg
+    iperf
+    downloadsetup
+    ls
+    ps
+    checksysready
+    cleanlogo
+    downloadlensinfo
+    displaylensinfo
+    clearlensinfo
+    downstitchcal
+    uploadstitchcal
+    setmonocularid
+    getudid
+    route
+    mountnfs
+    secureboot
+```
+
+A restricted shell. The vendor whitelisted a small set of commands and locked everything else out.
+This didn't seem useful at first, but I noticed a few of those commands had `.sh` extensions, which meant they were scripts sitting somewhere on the filesystem.
+
+I took note of that and rebooted again to go dig deeper.
+
+On this second reboot, I was able to interrupt the autoboot process and was greeted with this prompt:
 
 ```
 uboot #
 ```
 
-Now, I could start interacting with the device, albeit in a restricted capacity.
+Now, I could start interacting with the device a little more, albeit still in a restricted capacity.
 
 ## Investigating the U-Boot Shell
 
@@ -143,10 +196,13 @@ The output confirmed some useful information, but the variable that stood out wa
 
 ## Changing the Boot Routine
 
-The `bootargs`, as the name suggests, controls the Linux kernel startup parameters.
+The `bootargs`, as the name suggests, control the Linux kernel startup parameters.
 More importantly, it's one of the few things we can modify from U-Boot, which makes it a powerful entry point for changing the device's behavior.
 In this variable, the `mtdparts` argument lays out the device's entire flash partition map with labels and sizes.
+This immediately tells us the device is using a NAND-backed layout with multiple named partitions, including a large `program` partition likely containing the main firmware. That gives us a clear target if we ever gain write access.
+
 The `init` parameter defines the first program the kernel will run after mounting the filesystem.
+
 Using the `setenv` command, I modified this variable to boot into single-user mode:
 
 ```
@@ -164,11 +220,13 @@ uid=0(root) gid=0(root)
 Success!
 
 The camera software isn't running yet though since the device is essentially in recovery mode.
-However, we do have access to the initialization scripts that are stored in RAM.. Maybe this could give us insight into the mounting process so we can recreate it manually.
+However, we do have access to the initialization scripts that are stored in RAM.
+
+To access the full firmware, I needed to replicate the device's normal mounting process manually.
 
 ## Manual Mounting
 
-Taking a look at the init.d directory we see the a bunch of scripts that haven't yet been run:
+Taking a look at the `init.d` directory we see a bunch of scripts that haven't yet been run:
 
 ```
 root@root:/etc/init.d$ ls
@@ -186,7 +244,8 @@ mount -a
 ```
 
 The inside of the `S30ambrwfs` script is a lot more involved. It primarily handles mounting each partition from the UBIFS on the flash.
-Rather than running the full initialization, I wrote put together a few commands that handle only mounting the `program` partition.
+
+Rather than running the full initialization, I put together a few commands that simply handle mounting the `program` partition.
 
 ```
 mkdir -p /dev/shm
@@ -206,3 +265,37 @@ mount -t ubifs ubi0:program -o sync /program
 After running those commands, I could finally start browsing the contents of the program partition.
 
 ## Breaking Free
+
+While browsing `/program/bin`, I noticed something: some of the files there matched commands from the vendor shell whitelist, including `checksysready`.
+
+Because these scripts are executed by the system as root during normal operation, they represent a natural privilege boundary.
+Since these scripts are on a writable partition in persistent flash storage getting run as root, I knew modifying the script and then calling that command in the vendor shell would allow me to open up a unrestricted root shell on the device running full firmware.
+
+I made a simple edit to `/program/bin/checksysready.sh`, just adding `/bin/sh` to the top:
+
+```
+#!/bin/sh
+/bin/sh
+
+result="fail"
+echo "@"
+while [ 1 ]
+do
+<...>
+```
+
+Then, I rebooted, logged into the vendor shell with default credentials, and gave it a shot:
+
+```
+User@/root>checksysready
+root@root:~$ id
+uid=0(root) gid=0(root) groups=0(root)
+```
+
+There it is!! We broke free from the restricted vendor shell and into a full root shell on the device.
+
+## Conclusion
+
+Achieving this root shell opens up a world of opportunities. We'll be able to extract the firmware, do some live debugging, and get a much closer look at how this device actually works.
+
+This is just the start! Next we'll start digging into the live firmware on the device and extracting the firmware for offline analysis.
