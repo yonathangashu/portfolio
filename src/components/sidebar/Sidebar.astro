@@ -48,8 +48,13 @@ const navItems = [
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 0.5rem;
+        gap: 0.3rem;
         font-size: 0.6rem;
+    }
+    .logo {
+        width: 0.7rem;
+        height: 0.7rem;
+        opacity: 70%;
     }
     @media (min-width: 48rem) {
         .sidebar {
@@ -92,12 +97,13 @@ const navItems = [
         }
 
         .nav {
-            font-size: 0.55rem;
-            gap: 0.1rem;
+            gap: 0.15rem;
         }
 
         .logo {
-            width: 12px;
+            width: 0.8rem;
+            height: 0.8rem;
+            opacity: 70%;
         }
     }
 
@@ -149,10 +155,6 @@ const navItems = [
         align-items: center;
     }
 
-    .logo {
-        opacity: 70%;
-    }
-
     .logo:hover {
         opacity: 100%;
     }
@@ -195,15 +197,11 @@ const navItems = [
                 >
                 ✦
                 <a href="https://github.com/YonathanGashu"
-                    ><GithubLogo class="logo" width="1rem" height="auto" /></a
+                    ><GithubLogo class="logo" /></a
                 >
                 ✦
                 <a href="https://linkedin.com/in/ygashu"
-                    ><LinkedinLogo
-                        class="logo"
-                        width=".9rem"
-                        height="auto"
-                    /></a
+                    ><LinkedinLogo class="logo" /></a
                 >
             </nav>
         </div>

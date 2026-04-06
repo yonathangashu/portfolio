@@ -1,9 +1,8 @@
 ---
 layout: ../../../layouts/post/PostLayout.astro
 title: "From UART to Root: Vendor Shell Escape on a Uniview IP Camera"
-date: 04-02-2026
+date: 04-06-2026
 author: Yonathan Gashu
-description:
 tags: ["#security", "#embedded", "#hardware"]
 published: false
 ---
