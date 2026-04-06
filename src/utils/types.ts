@@ -1,6 +1,6 @@
 export type PostFrontmatter = {
 	title: string;
 	date: string;
-	published?: false;
+	published?: boolean;
 	tags: string[];
 };

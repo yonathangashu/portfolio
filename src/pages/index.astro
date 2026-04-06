@@ -1,7 +1,11 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
-const posts = await Astro.glob("./posts/**/*.md");
+const allposts = await Astro.glob("./posts/**/*.md");
+
+const posts = allposts.filter(
+	({ frontmatter }) => frontmatter.published || import.meta.env.DEV,
+);
 const sorted = posts.sort(
 	(a, b) =>
 		new Date(b.frontmatter.date).getTime() -
@@ -47,7 +51,7 @@ const sorted = posts.sort(
     }
     .post-preview-body {
         position: relative;
-        max-height: 22rem;
+        max-height: 20rem;
         overflow: hidden;
         line-height: 1.5rem;
         text-align: justify;

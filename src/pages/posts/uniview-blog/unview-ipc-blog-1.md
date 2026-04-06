@@ -4,7 +4,7 @@ title: "From UART to Root: Vendor Shell Escape on a Uniview IP Camera"
 date: 04-06-2026
 author: Yonathan Gashu
 tags: ["#security", "#embedded", "#hardware"]
-published: false
+published: true
 ---
 
 There's a gap between solving CTF challenges and poking at a real device running unknown firmware.
