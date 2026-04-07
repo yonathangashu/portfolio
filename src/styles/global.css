@@ -11,6 +11,11 @@
 	--font-heading: var(--font-charter), Georgia, serif;
 }
 
+::view-transition-old(root),
+::view-transition-new(root) {
+	animation: none;
+}
+
 body {
 	font-family: var(--font-body);
 	font-weight: 400;

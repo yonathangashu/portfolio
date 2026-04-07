@@ -1,6 +1,7 @@
 ---
 import "@/styles/global.css";
 import { Font } from "astro:assets";
+import { ViewTransitions } from "astro:transitions";
 import Footer from "@/components/footer/Footer.astro";
 import Sidebar from "@/components/sidebar/Sidebar.astro";
 
@@ -47,6 +48,7 @@ const { title = "ygashu" } = Astro.props;
 </style>
 <html lang="en">
 	<head>
+		<ViewTransitions fallback="none" />
 		<meta charset="utf-8" />
 		<link
 			rel="icon"
