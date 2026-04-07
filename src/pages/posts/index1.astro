@@ -1,0 +1,155 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import type { PostFrontmatter } from "@/utils/types";
+
+const posts = Object.values(
+	import.meta.glob<{ url: string; frontmatter: PostFrontmatter }>("./**/*.md", {
+		eager: true,
+	}),
+);
+posts.sort(
+	(a, b) =>
+		new Date(b.frontmatter.date).valueOf() -
+		new Date(a.frontmatter.date).valueOf(),
+);
+---
+
+<style>
+    .content-container {
+        color: #bbb;
+        max-width: 100%;
+        margin-left: 0;
+        padding: 0;
+    }
+
+    .title {
+        color: #ddd;
+        text-align: center;
+        text-decoration: underline #682f8e 0.3rem;
+        text-underline-offset: 0.4rem;
+        font-weight: 1000;
+        margin-bottom: 0.5rem;
+        font-size: 2rem;
+    }
+
+    .body {
+        display: flex;
+        flex-direction: column;
+        align-items: left;
+        font-size: 0.8rem;
+        font-weight: 450;
+        padding: 1rem;
+        margin-bottom: 0.7rem;
+    }
+
+    a {
+        color: #ddd;
+        font-size: 0.65rem;
+        text-decoration: none;
+    }
+
+    .body h1 {
+        margin: 0;
+        font-size: 0.9rem;
+        font-style: italic;
+        text-decoration: underline #682f8e 0.1rem;
+        text-underline-offset: 0.1rem;
+    }
+    @media (min-width: 48rem) {
+        .content-container {
+            padding-bottom: 2rem;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            margin: 2rem;
+            text-decoration: underline #682f8e 0.3rem;
+            text-underline-offset: 0.4rem;
+        }
+
+        .body {
+            font-size: 0.9rem;
+            padding: 1.8rem;
+            padding-top: 0;
+        }
+
+        a {
+            font-size: 0.7rem;
+        }
+
+        .body h1 {
+            font-size: 1rem;
+        }
+    }
+
+    @media (min-width: 72rem) {
+        .content-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-left: 0;
+        }
+
+        .title {
+            font-size: 3rem;
+        }
+    }
+
+    a:hover {
+        color: #fff;
+    }
+
+    .body p {
+        margin: 0;
+
+        white-space: nowrap;
+    }
+
+    span {
+        display: flex;
+        gap: 0.35rem;
+        align-items: center;
+    }
+
+    ul {
+        margin: 0.15rem 0;
+    }
+</style>
+<BaseLayout title="posts">
+    <div class="content-container">
+        <h1 class="title">posts</h1><div class="body">
+            {
+                posts.filter(
+                    ({ frontmatter }) =>
+                        frontmatter.published || import.meta.env.DEV,
+                ).length === 0 ? (
+                    <ul>
+                        <li>
+                            <span>
+                                <h1>Nothing to see here... yet!</h1>
+                            </span>
+                        </li>
+                    </ul>
+                ) : (
+                    posts
+                        .filter(
+                            ({ frontmatter }) =>
+                                frontmatter.published || import.meta.env.DEV,
+                        )
+                        .map((post) => (
+                            <ul>
+                                <a href={post.url}>
+                                    <li>
+                                        <span>
+                                            <p>{post.frontmatter.date}</p>/
+                                            <h1>{post.frontmatter.title}</h1>
+                                        </span>
+                                    </li>
+                                </a>
+                            </ul>
+                        ))
+                )
+            }
+        </div>
+    </div>
+</BaseLayout>

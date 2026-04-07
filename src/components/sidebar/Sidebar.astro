@@ -4,7 +4,6 @@ import LinkedinLogo from "@/assets/linkedin.svg";
 
 const navItems = [
 	{ title: "home", path: "/" },
-	{ title: "about", path: "/about" },
 	{ title: "posts", path: "/posts" },
 ];
 ---
@@ -48,7 +47,7 @@ const navItems = [
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 0.3rem;
+        gap: 0.4rem;
         font-size: 0.6rem;
     }
     .logo {
@@ -97,7 +96,7 @@ const navItems = [
         }
 
         .nav {
-            gap: 0.15rem;
+            gap: 0.3rem;
         }
 
         .logo {
@@ -124,8 +123,7 @@ const navItems = [
         }
 
         .nav {
-            font-size: 0.75rem;
-            gap: 0.2rem;
+            font-size: 0.85rem;
         }
     }
 
@@ -161,6 +159,8 @@ const navItems = [
 
     .nav-item-active {
         font-weight: 700;
+        text-decoration: underline #682f8e 0.125rem !important;
+        text-underline-offset: 0.15rem;
     }
 </style>
 <div class="sidebar">

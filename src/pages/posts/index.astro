@@ -1,155 +1,149 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import type { PostFrontmatter } from "@/utils/types";
 
-const posts = Object.values(
-	import.meta.glob<{ url: string; frontmatter: PostFrontmatter }>("./**/*.md", {
-		eager: true,
-	}),
+const allposts = await Astro.glob("../posts/**/*.md");
+
+const posts = allposts.filter(
+	({ frontmatter }) => frontmatter.published || import.meta.env.DEV,
 );
-posts.sort(
+const sorted = posts.sort(
 	(a, b) =>
-		new Date(b.frontmatter.date).valueOf() -
-		new Date(a.frontmatter.date).valueOf(),
+		new Date(b.frontmatter.date).getTime() -
+		new Date(a.frontmatter.date).getTime(),
 );
 ---
 
-<style>
-    .content-container {
+<style is:global>
+    .posts-container {
         color: #bbb;
-        max-width: 100%;
+        padding: 2rem;
+        padding-top: 2rem;
         margin-left: 0;
-        padding: 0;
-    }
-
-    .title {
-        color: #ddd;
-        text-align: center;
-        text-decoration: underline #682f8e 0.3rem;
-        text-underline-offset: 0.4rem;
-        font-weight: 1000;
-        margin-bottom: 0.5rem;
-        font-size: 2rem;
-    }
-
-    .body {
-        display: flex;
-        flex-direction: column;
-        align-items: left;
-        font-size: 0.8rem;
-        font-weight: 450;
-        padding: 1rem;
-        margin-bottom: 0.7rem;
-    }
-
-    a {
-        color: #ddd;
-        font-size: 0.65rem;
-        text-decoration: none;
-    }
-
-    .body h1 {
-        margin: 0;
         font-size: 0.9rem;
+    }
+    .post-preview {
+        position: relative;
+        margin-bottom: 2rem;
+        max-width: 100%;
+    }
+    .post-preview-header {
+        margin-bottom: 1.2rem;
+        margin-top: 1rem;
+        transform-origin: top;
+        transform: translate(-0.5rem, -0.4rem);
+    }
+    .post-preview-title {
+        color: #ddd;
+        text-decoration: underline #682f8e 0.2rem;
+        text-underline-offset: 0.3rem;
+        font-weight: 1000;
         font-style: italic;
-        text-decoration: underline #682f8e 0.1rem;
-        text-underline-offset: 0.1rem;
+        font-size: 1.5rem;
+        margin-top: 1rem;
+    }
+    .post-preview-title a {
+        color: inherit;
+        text-decoration: inherit;
+    }
+    .post-preview-title a:hover {
+        color: #fff;
+    }
+    .post-preview-meta {
+        font-size: 0.75rem;
+        font-style: italic;
+    }
+    .post-preview-body {
+        position: relative;
+        max-height: 20rem;
+        overflow: hidden;
+        line-height: 1.5rem;
+        text-align: justify;
+    }
+    .post-preview-body::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 6rem;
+        background: linear-gradient(transparent, #1b112d);
+        pointer-events: none;
     }
     @media (min-width: 48rem) {
-        .content-container {
-            padding-bottom: 2rem;
+        .posts-container {
+            max-width: 44rem;
+            margin-left: 2rem;
+            margin-right: 2rem;
+            font-size: 1rem;
         }
-
-        .title {
-            font-size: 2.5rem;
-            margin: 2rem;
+        .post-preview-title {
+            font-size: 2rem;
             text-decoration: underline #682f8e 0.3rem;
             text-underline-offset: 0.4rem;
         }
-
-        .body {
+        .post-preview-meta {
             font-size: 0.9rem;
-            padding: 1.8rem;
-            padding-top: 0;
         }
-
-        a {
-            font-size: 0.7rem;
+        .post-preview-body {
+            max-height: 24rem;
+            line-height: 1.5rem;
         }
-
-        .body h1 {
-            font-size: 1rem;
+        .post-preview-header {
+            transform: translate(-1rem, -0.4rem);
         }
     }
-
     @media (min-width: 72rem) {
-        .content-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-left: 0;
-        }
-
-        .title {
-            font-size: 3rem;
+        .posts-container {
+            margin-left: 4rem;
+            margin-right: 2rem;
         }
     }
 
-    a:hover {
-        color: #fff;
-    }
-
-    .body p {
-        margin: 0;
-
-        white-space: nowrap;
-    }
-
-    span {
-        display: flex;
-        gap: 0.35rem;
-        align-items: center;
-    }
-
-    ul {
-        margin: 0.15rem 0;
+    .post-preview-body h1,
+    .post-preview-body h2,
+    .post-preview-body h3,
+    .post-preview-body h4,
+    .post-preview-body h5,
+    .post-preview-body h6 {
+        color: #ddd;
+        font-weight: 700;
+        text-rendering: geometricPrecision;
+        font-style: italic;
+        text-decoration-line: underline;
+        text-decoration-color: #682f8e;
+        text-underline-offset: 4%;
+        text-decoration-thickness: 0.25ex;
+        transform: none;
     }
 </style>
-<BaseLayout title="posts">
-    <div class="content-container">
-        <h1 class="title">posts</h1><div class="body">
-            {
-                posts.filter(
-                    ({ frontmatter }) =>
-                        frontmatter.published || import.meta.env.DEV,
-                ).length === 0 ? (
-                    <ul>
-                        <li>
-                            <span>
-                                <h1>Nothing to see here... yet!</h1>
+
+<BaseLayout title="home">
+    <div class="posts-container">
+        {
+            sorted.map((post, i) => (
+                <>
+                    <div class="post-preview">
+                        <div class="post-preview-header">
+                            <span class="post-preview-meta">
+                                {post.frontmatter.date}
+                                {post.frontmatter.tags &&
+                                    post.frontmatter.tags
+                                        .map((tag: string) => ` ✦ ${tag}`)
+                                        .join("")}
                             </span>
-                        </li>
-                    </ul>
-                ) : (
-                    posts
-                        .filter(
-                            ({ frontmatter }) =>
-                                frontmatter.published || import.meta.env.DEV,
-                        )
-                        .map((post) => (
-                            <ul>
-                                <a href={post.url}>
-                                    <li>
-                                        <span>
-                                            <p>{post.frontmatter.date}</p>/
-                                            <h1>{post.frontmatter.title}</h1>
-                                        </span>
-                                    </li>
-                                </a>
-                            </ul>
-                        ))
-                )
-            }
-        </div>
+                            <h1 class="post-preview-title">
+                                <a href={post.url}>{post.frontmatter.title}</a>
+                            </h1>
+                        </div>
+                        <div class="post-preview-body">
+                            <div
+                                class="post-preview-body"
+                                set:html={post.compiledContent()}
+                            />
+                        </div>
+                    </div>
+                </>
+            ))
+        }
     </div>
 </BaseLayout>
