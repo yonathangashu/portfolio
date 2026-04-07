@@ -28,7 +28,7 @@ const { frontmatter } = Astro.props as Props;
 	.post-header {
 		margin-bottom: 1.2rem;
 		transform-origin: top;
-		transform: skewY(-2deg) translate(-0.5rem, -0.4rem);
+		transform: translate(-0.5rem, -0.4rem);
 		max-width: 100%;
 	}
 	.post-title {
@@ -105,7 +105,7 @@ const { frontmatter } = Astro.props as Props;
 	.post h4,
 	.post h5,
 	.post h6 {
-		transform: skewY(-2deg) translate(-0.5rem, 0.25rem);
+		transform: translate(-0.5rem, 0.25rem);
 		transform-origin: top;
 	}
 	@media (min-width: 48rem) {
@@ -128,7 +128,7 @@ const { frontmatter } = Astro.props as Props;
 		}
 		.post-header {
 			margin-bottom: 1.5rem;
-			transform: skewY(-2deg) translate(-1rem, -0.4rem);
+			transform: translate(-1rem, -0.4rem);
 		}
 		.post-title {
 			text-decoration: underline #682f8e 0.3rem;
@@ -140,13 +140,14 @@ const { frontmatter } = Astro.props as Props;
 		}
 		.post pre {
 			padding: 1.2rem 1.4rem;
+			padding-top: 1.8rem;
 			font-size: 0.85rem;
 		}
 		.post .code-wrapper::before {
 			font-size: 0.65rem;
 		}
 		.post img {
-			max-height: 32rem;
+			max-height: 34rem;
 		}
 		.post h1 {
 			font-size: 2rem;
@@ -168,9 +169,6 @@ const { frontmatter } = Astro.props as Props;
 			padding: 2rem;
 			margin-left: 4rem;
 			margin-right: 2rem;
-		}
-		.post img {
-			max-height: 48rem;
 		}
 	}
 	.post a {
