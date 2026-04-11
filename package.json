@@ -13,6 +13,7 @@
 		"prepare": "husky"
 	},
 	"dependencies": {
+		"@astrojs/rss": "^4.0.18",
 		"astro": "^5.16.11",
 		"sharp": "^0.34.5"
 	},
